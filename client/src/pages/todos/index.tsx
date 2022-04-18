@@ -15,9 +15,10 @@ const TodoListPage: FC = () => {
     <>
       {isLoading && <Heading>Loading...</Heading>}
       {!isLoading && data && data.todos && <Heading> {data.message}</Heading>}
+      {!isLoading && !data.todos && <Heading> No hay tareas disponibles</Heading>}
       {!isLoading && data && data.todos && (
         <SimpleGrid height="auto" width="7xl" columns={2} spacingX="40px" spacingY="20px">
-          {data && data?.todos?.map((item: any) => <CardItem todo={item} key={`${item.objectID}_name`} />)}
+          {data && data?.todos?.map((item: any) => <CardItem todo={item} key={`${item.id}`} />)}
         </SimpleGrid>
       )}
     </>
