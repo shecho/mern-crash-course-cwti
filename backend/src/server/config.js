@@ -12,8 +12,6 @@ const config = (app) => {
   app.use(json());
   app.use(morgan("dev"));
 
-  // Static files when you use SSR
-
   // Routes from /routes index
   routes(app);
   return app;
