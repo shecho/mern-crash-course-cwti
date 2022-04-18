@@ -16,7 +16,7 @@ ctrl.create = async (req, res) => {
     tarea,
     stado,
     tiempo,
-    responsable,
+    responsible,
   } = req.body;
   const newTodo = new Todo({
     observaciones,
@@ -25,7 +25,7 @@ ctrl.create = async (req, res) => {
     tarea,
     stado,
     tiempo,
-    responsable,
+    responsible,
   });
   await newTodo.save();
   res.json({
@@ -34,11 +34,30 @@ ctrl.create = async (req, res) => {
   });
 };
 ctrl.update = async (req, res) => {
+  const {
+    observaciones,
+    prioridad,
+    cliente,
+    tarea,
+    stado,
+    tiempo,
+    responsible,
+  } = req.body;
+  await Note.findByIdAndUpdate(req.params.id, {
+    observaciones,
+    prioridad,
+    cliente,
+    tarea,
+    stado,
+    tiempo,
+    responsible,
+  });
   res.json({
     message: "Tarea Actualizada",
   });
 };
 ctrl.delete = async (req, res) => {
+  await Note.findByIdAndDelete(req.params.id);
   res.json({
     message: "tarea Eliminada",
   });

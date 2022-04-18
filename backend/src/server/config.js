@@ -1,4 +1,4 @@
-import express, { json } from "express";
+import { json } from "express";
 // import path from "path";
 import morgan from "morgan";
 import routes from "../routes";

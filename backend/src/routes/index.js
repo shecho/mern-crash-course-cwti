@@ -8,10 +8,11 @@ module.exports = (app) => {
   app.get("/", Home.wellcome);
 
   // TODOs Routes
-  app.get("/todo", Todo.list);
-  app.post("/todo", Todo.create);
-  app.put("/todo", Todo.update);
-  app.delete("/todo", Todo.delete);
+  app.get("/todos", Todo.list);
+  app.post("/todos", Todo.create);
+  app.put("/todos/:id", Todo.update);
+  app.delete("/todo/:id", Todo.delete);
+
   // Task Routes
   app.get("/task", Task.list);
   app.post("/task", Task.create);
