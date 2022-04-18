@@ -22,6 +22,7 @@
       "@containers/*": ["src/shared/containers/*"],
       "@contexts/*": ["src/shared/contexts/*"],
       "@routes/*": ["src/shared/routes/*"],
+      "@pages/*": ["src/pages/*"],
       "@hooks/*": ["src/shared/hooks/*"],
       "@styles/*": ["src/shared/styles/*"],
       "@models/*": ["src/shared/models/*"],
