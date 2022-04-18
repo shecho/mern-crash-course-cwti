@@ -1,7 +1,7 @@
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios'
 
 export const coreApiInstance = axios.create({
-  baseURL: process.env.REACT_APP_BASE_API_URL || 'http://localhost:4000',
+  baseURL: 'http://localhost:4000',
 })
 
 // TODO add token if neeeded
