@@ -6,6 +6,7 @@ const router = Router();
 
 module.exports = (app) => {
   app.get("/", Home.wellcome);
+  app.get("/home", Home.wellcome);
 
   // TODOs Routes
   app.get("/todos", Todo.list);

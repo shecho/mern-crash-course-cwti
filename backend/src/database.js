@@ -1,17 +1,31 @@
 import mongoose from "mongoose";
 // import config from "./dbconfig";
 
-const URI = process.env.MONGOOSE_URI || "mongodb://localhost/merndatabase";
+const URI =
+  process.env.MONGOOSE_URI || "mongodb://localhost:27017/merndatabase";
 
-mongoose.connect(URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-const connection = mongoose.connection;
+// mongoose.connect(URI, {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// });
+// const connection = mongoose.connection;
 
-connection.once("open", () => {
-  console.log("Database is connected");
-});
+// connection.once("open", () => {
+//   console.log("Database is connected");
+// });
+
+//  Usando funciones autoinvocadas
+(async () => {
+  try {
+    const db = mongoose.connect(URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+    console.log("Database is connected");
+  } catch (error) {
+    console.error(error);
+  }
+})();
 
 // Ejemplo para BD cloud
 // const { MongoClient, ServerApiVersion } = require("mongodb");
@@ -27,17 +41,3 @@ connection.once("open", () => {
 //   // perform actions on the collection object
 //   client.close();
 // });
-
-//  Usando funciones autoinvocadas
-// (async () => {
-//   try {
-//     const db = await mongoose.connect(config.MONGODB_URI, {
-//       useNewUrlParser: true,
-//       useUnifiedTopology: true,
-//       useFindAndModify: false,
-//     });
-//     console.log("Mongodb is connected to", db.connection.host);
-//   } catch (error) {
-//     console.error(error);
-//   }
-// })();
