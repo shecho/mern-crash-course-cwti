@@ -19,7 +19,7 @@ export interface Todo {
   updatedAt?: Date
   _id?: string
 }
-const CardItem: FC<ICard> = ({ todo, handleClick }) => {
+const CardItem: FC<ICard> = ({ todo }) => {
   const { cliente, tarea, observaciones, _id } = todo
 
   return (
