@@ -43,7 +43,7 @@ ctrl.update = async (req, res) => {
     tiempo,
     responsible,
   } = req.body;
-  await Note.findByIdAndUpdate(req.params.id, {
+  await Todo.findByIdAndUpdate(req.params.id, {
     observaciones,
     prioridad,
     cliente,
@@ -57,7 +57,8 @@ ctrl.update = async (req, res) => {
   });
 };
 ctrl.delete = async (req, res) => {
-  await Note.findByIdAndDelete(req.params.id);
+  console.log(req.params.id);
+  await Todo.findByIdAndDelete(req.params.id);
   res.json({
     message: "tarea Eliminada",
   });

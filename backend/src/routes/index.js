@@ -12,7 +12,7 @@ module.exports = (app) => {
   app.get("/todos", Todo.list);
   app.post("/todos", Todo.create);
   app.put("/todos/:id", Todo.update);
-  app.delete("/todo/:id", Todo.delete);
+  app.delete("/todos/:id", Todo.delete);
 
   // Task Routes
   app.get("/task", Task.list);
