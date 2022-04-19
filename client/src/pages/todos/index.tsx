@@ -9,7 +9,7 @@ import { GET_TODOS_LIST } from '../../shared/queries/constans'
 
 const TodoListPage: FC = () => {
   const { data, isLoading } = useQuery([GET_TODOS_LIST], () => queryAllTodos(), {
-    keepPreviousData: true,
+    keepPreviousData: false,
   })
   console.log(data)
 

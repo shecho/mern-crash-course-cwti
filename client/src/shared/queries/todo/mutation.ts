@@ -12,5 +12,6 @@ export const updateTodo = (todoId: string) => (data: any) => {
 }
 
 export const deleteTodo = (todoId: string) => () => {
+  console.log(GET_TODO_BY_ID(todoId))
   return ApiService({ method: 'DELETE', url: GET_TODO_BY_ID(todoId) })
 }

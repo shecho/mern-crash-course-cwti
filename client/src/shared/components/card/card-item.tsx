@@ -2,6 +2,9 @@ import { FC } from 'react'
 import { Box, Flex, Icon, Text } from '@chakra-ui/react'
 import { FaPen, FaTrash } from 'react-icons/fa'
 import { cardContainerStyles, cardIconsStyles, flexCardContainer, flexSectionBaseStyles } from './cards.styles'
+import { useMutation, useQueryClient } from 'react-query'
+import { deleteTodo } from '@src/shared/queries/todo/mutation'
+import { GET_TODOS_LIST } from '@src/shared/queries/constans'
 
 export interface ICard {
   todo: Todo
@@ -17,11 +20,24 @@ export interface Todo {
   tarea?: string
   tiempo?: number
   updatedAt?: Date
-  _id?: string
+  _id: string
 }
 const CardItem: FC<ICard> = ({ todo }) => {
-  const { cliente, tarea, observaciones, _id } = todo
+  const { cliente, tarea, observaciones, _id: id } = todo
+  const queryClient = useQueryClient()
+  const { mutateAsync, isLoading } = useMutation(deleteTodo(id), {
+    onSuccess: () => {
+      queryClient.invalidateQueries(GET_TODOS_LIST)
+    },
+  })
 
+  const handleDelete = async () => {
+    try {
+      await mutateAsync()
+    } catch (error) {
+      console.warn(error)
+    }
+  }
   return (
     <>
       <Box {...cardContainerStyles}>
@@ -37,11 +53,11 @@ const CardItem: FC<ICard> = ({ todo }) => {
           </Flex>
 
           <Flex {...flexSectionBaseStyles} justify="space-evenly" w="20%" direction="column" bg="gray.100" rounded="lg">
-            {_id && FaPen && FaTrash ? (
+            {id && FaPen && FaTrash ? (
               <>
                 <Icon as={FaPen} {...cardIconsStyles} />
 
-                <Icon as={FaTrash} {...cardIconsStyles} />
+                <Icon onClick={handleDelete} as={FaTrash} {...cardIconsStyles} />
               </>
             ) : (
               ''
@@ -53,7 +69,3 @@ const CardItem: FC<ICard> = ({ todo }) => {
   )
 }
 export default CardItem
-
-function handleAddFavorite(todo: Todo): void {
-  throw new Error('Function not implemented.')
-}

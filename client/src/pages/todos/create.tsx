@@ -1,6 +1,6 @@
 import { Button, Container, FormControl, FormLabel, Icon, Input, Link as ChakraLink } from '@chakra-ui/react'
 import { Link, useNavigate } from 'react-router-dom'
-import { FC, useRef, useState } from 'react'
+import { FC, useState } from 'react'
 import { FaTimes } from 'react-icons/fa'
 import { useMutation } from 'react-query'
 import { createTodo } from '@src/shared/queries/todo/mutation'
