@@ -16,8 +16,12 @@ interface Todo {
   _id?: string
 }
 
-const TodoCreatePage: FC = () => {
-  const [newTodo, setNewTodo] = useState<Partial<Todo>>({} as Todo)
+interface Props {
+  todo?: Partial<Todo>
+}
+
+const TodoCreatePage: FC<Props> = ({ todo = {} }) => {
+  const [newTodo, setNewTodo] = useState<Partial<Todo>>(todo)
   let navigate = useNavigate()
 
   const handleInputChange = (e: any) => {

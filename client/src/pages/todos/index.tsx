@@ -17,7 +17,7 @@ const TodoListPage: FC = () => {
     <>
       <Stack flexDirection="row-reverse" direction="row" spacing={4} mb="5">
         <ChakraLink as={Link as any} to="create">
-          <Button leftIcon={<Icon as={FaPlus} />} colorScheme="teal" variant="solid">
+          <Button isLoading={isLoading} leftIcon={<Icon as={FaPlus} />} colorScheme="teal" variant="solid">
             New Todo
           </Button>
         </ChakraLink>

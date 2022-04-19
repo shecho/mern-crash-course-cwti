@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { Box, Flex, Icon, Text } from '@chakra-ui/react'
+import { Box, Flex, Heading, Icon, Text } from '@chakra-ui/react'
 import { FaPen, FaTrash } from 'react-icons/fa'
 import { cardContainerStyles, cardIconsStyles, flexCardContainer, flexSectionBaseStyles } from './cards.styles'
 import { useMutation, useQueryClient } from 'react-query'
@@ -43,13 +43,16 @@ const CardItem: FC<ICard> = ({ todo }) => {
       <Box {...cardContainerStyles}>
         <Flex {...flexCardContainer}>
           <Flex {...flexSectionBaseStyles} direction="column" w="80%">
-            <Text> Tarea: {tarea && tarea}</Text>
+            <Text fontWeight="bold"> Tarea:</Text>
+            <Text> {tarea && tarea}</Text>
           </Flex>
           <Flex {...flexSectionBaseStyles} direction="column" w="80%">
-            <Text> cliente: {cliente && cliente}</Text>
+            <Text fontWeight="bold"> cliente</Text>
+            <Text> {cliente && cliente}</Text>
           </Flex>
           <Flex {...flexSectionBaseStyles} direction="column" w="80%">
-            <Text> Onservaciones: {observaciones && observaciones}</Text>
+            <Text fontWeight="bold"> Onservaciones:</Text>
+            <Text> {observaciones && observaciones}</Text>
           </Flex>
 
           <Flex {...flexSectionBaseStyles} justify="space-evenly" w="20%" direction="column" bg="gray.100" rounded="lg">
