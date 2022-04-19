@@ -1,7 +1,9 @@
 import { Button, Container, FormControl, FormLabel, Icon, Input, Link as ChakraLink } from '@chakra-ui/react'
-import { Link } from 'react-router-dom'
-import { FC, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { FC, useRef, useState } from 'react'
 import { FaTimes } from 'react-icons/fa'
+import { useMutation } from 'react-query'
+import { createTodo } from '@src/shared/queries/todo/mutation'
 
 interface Todo {
   cliente?: string
@@ -13,16 +15,29 @@ interface Todo {
   updatedAt?: Date
   _id?: string
 }
+
 const TodoCreatePage: FC = () => {
-  const [newTodo, setNewTodo] = useState<Partial<Todo>>({})
+  const [newTodo, setNewTodo] = useState<Partial<Todo>>({} as Todo)
+  let navigate = useNavigate()
 
   const handleInputChange = (e: any) => {
     setNewTodo((prevState) => ({ ...prevState, [e.target.name]: e.target.value }))
-    console.log(newTodo)
+  }
+  const { mutateAsync, isLoading } = useMutation(createTodo(newTodo))
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault()
+    try {
+      await mutateAsync()
+      e.target.reset()
+      navigate('/todos')
+    } catch (error) {
+      console.warn(error)
+    }
   }
   return (
     <Container>
-      <FormControl>
+      <FormControl isRequired as="form" onSubmit={handleSubmit}>
         <FormLabel htmlFor="cliente">Cliente</FormLabel>
         <Input id="cliente" name="cliente" type="text" mb="3" onChange={handleInputChange} />
 
@@ -41,14 +56,15 @@ const TodoCreatePage: FC = () => {
         <FormLabel htmlFor="observaciones">Observaciones</FormLabel>
         <Input id="observaciones" name="observaciones" type="text" mb="3" onChange={handleInputChange} />
 
-        <Button type="submit" m="2" isLoading={false} loadingText="Enviando" colorScheme="teal" variant="outline">
-          Enviar
-        </Button>
         <ChakraLink as={Link as any} to="/todos">
           <Button leftIcon={<Icon as={FaTimes} />} loadingText="Enviando" colorScheme="red" variant="outline">
             Cancelar
           </Button>
         </ChakraLink>
+
+        <Button type="submit" m="2" isLoading={isLoading} loadingText="Enviando" colorScheme="teal" variant="outline">
+          Enviar
+        </Button>
       </FormControl>
     </Container>
   )

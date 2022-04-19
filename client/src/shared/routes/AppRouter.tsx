@@ -17,6 +17,14 @@ function AppRouter() {
             <Route path=":id" element={<TodoDetailPage />} />
             <Route path="create" element={<TodoCreatePage />} />
           </Route>
+          <Route
+            path="*"
+            element={
+              <main style={{ padding: '1rem' }}>
+                <p>oops! pagina no encontrada</p>
+              </main>
+            }
+          />
         </Route>
       </Routes>
     </>
