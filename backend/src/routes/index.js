@@ -17,8 +17,8 @@ module.exports = (app) => {
   // Task Routes
   app.get("/task", Task.list);
   app.post("/task", Task.create);
-  app.put("/task", Task.update);
-  app.delete("/task", Task.delete);
+  app.put("/task/:id", Task.update);
+  app.delete("/task/:id", Task.delete);
   // Schdeule Routes
   app.use(router);
 };
